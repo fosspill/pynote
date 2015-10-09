@@ -1,0 +1,50 @@
+#!/usr/bin/python
+
+import sys, getopt
+import sqlite3 as lite
+
+def main(argv):
+	# Make sure encryption variable is defined. Default False.
+	encryption=False
+	
+	# Make sure -h -e is the only valid options. -e is encryption. Split options and arguments.
+	try:
+		opts, args = getopt.getopt(argv,"he")
+	except getopt.GetoptError:
+		print("Unknown options")
+		showhelp()
+		sys.exit(2)
+
+	#If no arguments at all..
+	if not len(sys.argv) > 1:
+		print("Placeholder list")
+		sys.exit()
+	else:
+		for opt, arg in opts:
+			if opt == '-h':
+				showhelp()
+			if opt == '-e':
+				encryption=True
+
+		#Make sure the two required ARGUMENTS are passed
+		if not (len(args) == 2):
+			showhelp()
+		elif args[0] == 'insert':
+			insertfunc()
+		elif args[0] == 'delete':
+			deletefunc()
+
+def insertfunc():
+	print("Placeholder INSERT")
+	sys.exit()
+
+def deletefunc():
+	print("Placerholder DELETE")
+	sys.exit()
+
+def showhelp():
+	print('Placeholder help')
+	sys.exit()
+
+if __name__ == "__main__":
+   main(sys.argv[1:])
